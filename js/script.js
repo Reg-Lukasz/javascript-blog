@@ -36,6 +36,40 @@ function titleClickHandler(event){
   targetArticle.classList.add('active');
 }
 
+const optArticleSelector = '.post';
+const optTitleSelector = '.post-title';
+const optTitleListSelector = '.titles';
+
+function generateTitleLinks(){
+
+  /* remove contents of titleList */
+  const titleList = document.querySelector(optTitleListSelector);
+  titleList.innerHTML = '';
+
+  /* for each article */
+  const articles = document.querySelectorAll(optArticleSelector);
+  let html = '';
+
+  for(let article of articles){
+
+    /* get the article id */
+    const articleId = article.getAttribute('id');
+
+    /* get the title from the title element */
+    const articleTitles = article.querySelector(optTitleSelector).innerHTML;
+
+    /* create HTML of the link */
+    const linkHTML = '<li><a href="#' + articleId +'"><span>' + articleTitles + '</span></a></li>';
+
+    /* insert link into html variable */
+    html = html + linkHTML;
+  }
+
+  titleList.innerHTML = html;
+}
+
+generateTitleLinks();
+
 const links = document.querySelectorAll('.titles a');
 
 for(let link of links){
